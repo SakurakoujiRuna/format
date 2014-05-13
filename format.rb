@@ -2,7 +2,8 @@
 
 # $realformat = ARGV[0]
 $realformat = "GBK"
-dir = String.new(ARGV[0])
+type = ARGV[0].to_i
+ifile = String.new(ARGV[1])
 
 def oct2hex(s)
 	t = (?0+s).split(?\\)
@@ -12,6 +13,19 @@ def oct2hex(s)
 	t.each do |ts|
 		ans += ts[0..2].to_i(8).chr
 		ans += ts[3..-1]
+	end
+
+	ans
+end
+
+def oct2hex2(s)
+	t = (?0+s).split(?%)
+	ans = t[0][1..-1]
+	t.shift
+
+	t.each do |ts|
+		ans += ts[0..1].to_i(16).chr
+		ans += ts[2..-1]
 	end
 
 	ans
@@ -51,4 +65,12 @@ def work(currentdir, layer)
 	File.rename(currentdirname, newcurrentdirname)
 end
 
-work(dir, 0)
+if type == 0;
+	work(ifile, 0)
+else
+	filename = ifile.split(?/)[-1]
+	newfilename = oct2hex2(filename).force_encoding($realformat).encode("UTF-8")
+	puts newfilename
+	Dir.chdir(File.dirname(ifile))
+	File.rename(filename,newfilename)
+end
