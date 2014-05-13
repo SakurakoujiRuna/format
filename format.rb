@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
-$realformat = ARGV[0]
-dir = String.new(ARGV[1])
+# $realformat = ARGV[0]
+$realformat = "GBK"
+dir = String.new(ARGV[0])
 
 def oct2hex(s)
 	t = (?0+s).split(?\\)
