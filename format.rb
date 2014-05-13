@@ -18,7 +18,7 @@ def oct2hex(s)
 	ans
 end
 
-def oct2hex2(s)
+def wtf(s)
 	t = (?0+s).split(?%)
 	ans = t[0][1..-1]
 	t.shift
@@ -69,7 +69,7 @@ if type == 0;
 	work(ifile, 0)
 else
 	filename = ifile.split(?/)[-1]
-	newfilename = oct2hex2(filename).force_encoding($realformat).encode("UTF-8")
+	newfilename = wtf(filename).force_encoding($realformat).encode("UTF-8")
 	puts newfilename
 	Dir.chdir(File.dirname(ifile))
 	File.rename(filename,newfilename)
