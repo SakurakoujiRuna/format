@@ -69,7 +69,11 @@ if type == 0;
 	work(ifile, 0)
 else
 	filename = ifile.split(?/)[-1]
-	newfilename = wtf(filename).force_encoding($realformat).encode("UTF-8")
+	if filename[1] == 'E' ;
+		newfilename = wtf(filename)
+	else
+		newfilename = wtf(filename).force_encoding($realformat).encode("UTF-8")
+	end
 	puts newfilename
 	Dir.chdir(File.dirname(ifile))
 	File.rename(filename,newfilename)
